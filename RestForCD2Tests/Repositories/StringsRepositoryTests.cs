@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using RestForCD2.Models;
 using RestForCD2.Repositories;
 using System;
 using System.Collections.Generic;
@@ -11,14 +12,19 @@ namespace RestForCD2.Repositories.Tests
     [TestClass()]
     public class StringsRepositoryTests
     {
+        private TeachersRepository repo = new();
         [TestMethod()]
         public void AddTest()
         {
-            StringsRepository repo = new();
-            repo.Add("Hello");
-            Assert.AreEqual(3, repo.GetAll().Count());
-            Assert.ThrowsException<ArgumentNullException>(() => repo.Add(null));
-            Assert.ThrowsException<ArgumentException>(() => repo.Add(""));
+            Teacher another = new() { Name = "Another" };
+            repo.Add(another);
+            Assert.AreEqual(3, repo.Get().Count());
+            
+            Teacher nameNull = new() { Name = null };
+            Teacher nameEmpty = new() { Name = "" };
+
+            Assert.ThrowsException<ArgumentNullException>(() => repo.Add(nameNull));
+            Assert.ThrowsException<ArgumentException>(() => repo.Add(nameEmpty));
         }
     }
 }
