@@ -4,7 +4,7 @@
     {
         private readonly List<string> _strings = new() { "Hello", "World" };
 
-        public void Add(string value)
+        public void Add(string? value)
         {
             if (value == null)
             {
