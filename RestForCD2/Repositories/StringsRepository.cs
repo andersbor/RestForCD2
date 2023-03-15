@@ -6,6 +6,14 @@
 
         public void Add(string value)
         {
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
+            /*if (value.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be empty", nameof(value));
+            }*/
             _strings.Add(value);
         }
 
